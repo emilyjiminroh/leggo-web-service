@@ -1,0 +1,67 @@
+/* public/css/style.css */
+
+.nav_type {
+  display: inline-block;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-weight: bold;
+  align-items: center;
+  padding: 20px;
+}
+
+.nav_type:hover {
+  background-color: rgb(158, 209, 162);
+}
+
+.menu {
+  background-color: black;
+}
+
+.title_box{
+  display: flex;
+  padding: 10px;
+}
+
+.title{
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.title_font{
+  font-style:oblique;
+  font-size: 30px;
+}
+
+.title_img{
+  width: 150px;
+  height: 85px;
+}
+
+.map{
+width:80%;
+height: 80%;
+
+}
+
+.iframe_inf{
+  margin-top:20px;
+}
+
+.info-box{
+  padding:0px 0px 0px 30px;
+  margin: 0px 0px 30px 0px;
+}
+
+.info-title{
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.info-title ul li{
+  margin: 5px 0px;
+  font-weight: 400;
+  list-style: none;
+}
+
