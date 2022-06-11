@@ -229,6 +229,9 @@
     >
     </iframe>
     <h2>대중교통 사용시 최적화 경로👟</h2>
+    <strong style="font-size: 20px">
+      최대한 🪜계단이 없고, 🛣️경로 표면이 고르고, 🎢경로가 단순할 수 있도록
+      지정했다</br> </strong><div style="font-size: 20px; margin-top:10px; font-weight: 700;">+ 로드뷰로 한 번 더 체크✅</div> 
     <div class="map_wrap">
       <div
         id="map"
@@ -275,6 +278,25 @@
           엘레베이터
         </li>
       </ul>
+    </div>
+    <div id="roadview" style="width: 750px; height: 290px"></div>
+    <div style="margin-bottom: 100px">
+      <h3>세종대학교 경로 <strong style="color: red">(빨간색)</strong></h3>
+      <li>
+        어린이대공원역 5번 출구 엘리베이터 -> 직진경로 -> 대양 AI 센터로 출입
+      </li>
+      <h3>
+        어린이대공원 경로 <strong style="color: greenyellow">(초록색)</strong>
+      </h3>
+      <li>
+        어린이대공원역 1번 출구 엘리베이터 -> 직진경로 -> 어린이대공원 정문으로
+        출입
+      </li>
+      <h3>건국대학교 경로 <strong style="color: blue">(파란색)</strong></h3>
+      <li>
+        건대입구역 3번 출구 엘리베이터 -> 직진경로 -> 건대입구 생명과학 병동 및
+        건대 병원으로 출입
+      </li>
     </div>
 
     <script
@@ -625,6 +647,63 @@
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
       var zoomControl = new kakao.maps.ZoomControl();
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+      var linePath = [
+        new kakao.maps.LatLng(37.548066, 127.07486),
+        new kakao.maps.LatLng(37.548933, 127.075393),
+        new kakao.maps.LatLng(37.550659, 127.076331),
+        new kakao.maps.LatLng(37.550602, 127.076798),
+      ];
+      // 지도에 표시할 선을 생성합니다
+      var polyline = new kakao.maps.Polyline({
+        path: linePath, // 선을 구성하는 좌표배열 입니다
+        strokeWeight: 5, // 선의 두께 입니다
+        strokeColor: "#00FF00", // 선의 색깔입니다
+        strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+        strokeStyle: "solid", // 선의 스타일입니다
+      });
+      // 지도에 선을 표시합니다
+      polyline.setMap(map);
+      var linePath1 = [
+        new kakao.maps.LatLng(37.548066, 127.07486),
+        new kakao.maps.LatLng(37.547692, 127.074142),
+        new kakao.maps.LatLng(37.550894, 127.076192),
+        new kakao.maps.LatLng(37.551009, 127.075877),
+      ];
+      // 지도에 표시할 선을 생성합니다
+      var polyline = new kakao.maps.Polyline({
+        path: linePath1, // 선을 구성하는 좌표배열 입니다
+        strokeWeight: 5, // 선의 두께 입니다
+        strokeColor: "#FF0000", // 선의 색깔입니다
+        strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+        strokeStyle: "solid", // 선의 스타일입니다
+      });
+      // 지도에 선을 표시합니다
+      polyline.setMap(map);
+      var linePath3 = [
+        new kakao.maps.LatLng(37.54091, 127.071115),
+        new kakao.maps.LatLng(37.544027, 127.072761),
+        new kakao.maps.LatLng(37.543881, 127.073817),
+      ];
+      // 지도에 표시할 선을 생성합니다
+      var polyline = new kakao.maps.Polyline({
+        path: linePath3, // 선을 구성하는 좌표배열 입니다
+        strokeWeight: 5, // 선의 두께 입니다
+        strokeColor: "	#0000FF", // 선의 색깔입니다
+        strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+        strokeStyle: "solid", // 선의 스타일입니다
+      });
+      // 지도에 선을 표시합니다
+      polyline.setMap(map);
+      var roadviewContainer = document.getElementById("roadview"); //로드뷰를 표시할 div
+      var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
+      var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+      var position = new kakao.maps.LatLng(37.54909, 127.07513);
+      // 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+      roadviewClient.getNearestPanoId(position, 50, function (panoId) {
+        roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
+      });
+      // 로드뷰 초기화가 완료되었을 때 로드뷰에 마커나 커스텀오버레이를 표시한다
+      kakao.maps.event.addListener(roadview, "init", function () {});
     </script>
   </body>
 </html>
